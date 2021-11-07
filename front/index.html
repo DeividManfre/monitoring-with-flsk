@@ -1,0 +1,41 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        var requestURL = 'http://127.0.0.1:5000/monitoring'
+        var request = new XMLHttpRequest();
+        request.open('GET', requestURL);
+        request.responseType = 'json';
+        request.send();
+        request.onload = function() {
+
+          }
+
+
+        google.charts.load('current', {'packages':['corechart']});
+
+        function desenharPizza (){
+
+            var tabela = new google.visualization.DataTable();
+            tabela.addColumn('string','categorias');
+            tabela.addColumn('number','valores');
+            tabela.addRows([
+
+                ['Educação',2000],
+                ['Transporte',500],
+            ]);
+
+            var grafico = new google.visualization.PieChart(document.getElementById('graficoPizza'));
+            grafico.draw(tabela);
+    }
+
+    google.charts.setOnLoadCallback(desenharPizza);
+
+
+    </script>
+</head>
+<body>
+    <div id="graficoPizza"></div>
+</body>
+</html>
